@@ -51,10 +51,10 @@ func main() {
 	proxy := gin.Default()
 	proxy.Any("/:any", proxyStart)
 	go func() {
-		log.Fatal(proxy.RunTLS("0.0.0.0:9090", "proxy-web-app.crt", "proxy-web-app.key"))
+		log.Fatal(proxy.Run("0.0.0.0:9090"))
 	}()
 
 	proxyAPI := gin.Default()
 	proxyAPI.GET("/hello", getRequest)
-	log.Fatal(proxyAPI.Run("0.0.0.0:8000"))
+	log.Fatal(proxyAPI.Run("0.0.0.0:8080"))
 }
