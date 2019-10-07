@@ -1,0 +1,17 @@
+version: '3.4'
+services:
+  web:
+    build:
+      network: host
+      context: .
+    ports:
+      - "8000:8000"
+      - "9090:9090"
+    links:
+      - mongo_db
+  mongo_db:
+    image: mongo:4.0.9
+    ports:
+      - "27017:27017"
+    volumes:
+      - /opt/mongodb:/data/db
